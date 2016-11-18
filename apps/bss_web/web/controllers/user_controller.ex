@@ -1,7 +1,8 @@
 defmodule BssWeb.UserController do
   use BssWeb.Web, :controller
 
-  plug :authenticate when action in [:index, :show]
+  plug :authenticate when action in [:index, :show, :create, :new]
+  plug :admin_only when action in [:create, :new]
 
   alias BssWeb.User
 
@@ -39,6 +40,18 @@ defmodule BssWeb.UserController do
     else
       conn
       |> put_flash(:error, "You must be logged in to access that page")
+      |> redirect(to: page_path(conn, :index))
+      |> halt()
+    end
+  end
+
+  defp admin_only(conn, _opts) do
+    current_user = conn.assigns.current_user
+    if current_user && current_user.admin do
+      conn
+    else
+      conn
+      |> put_flash(:error, "You must be an admin to do that")
       |> redirect(to: page_path(conn, :index))
       |> halt()
     end
