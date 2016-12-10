@@ -36,6 +36,7 @@ defmodule BssWeb.Web do
 
       import BssWeb.Router.Helpers
       import BssWeb.Gettext
+      import BssWeb.Auth, only: [authenticate_user: 2]
     end
   end
 
@@ -58,6 +59,8 @@ defmodule BssWeb.Web do
   def router do
     quote do
       use Phoenix.Router
+
+      import BssWeb.Auth, only: [authenticate_user: 2]
     end
   end
 
