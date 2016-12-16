@@ -17,9 +17,18 @@ defmodule BssWeb.Order do
 
     timestamps()
   end
-  
-  def changeset(struct, params \\ %{}) do
-    struct
+
+  def changeset(model, params \\ %{}) do
+    model
     |> cast(params, @required_fields, @optional_fields)
+    |> validate_length(:first_name, max: 50)
+    |> validate_length(:last_name, max: 50)
+    |> validate_length(:address_line_1, max: 100)
+    |> validate_length(:city, max: 50)
+    |> validate_length(:state, max: 2)
+    |> validate_length(:email, max: 255)
+    |> validate_format(:email, ~r/\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i)
+    # TODO validate zip format
+    #|> validate_format(:zip, ~r/\A\d{5}(-\d{4})?\z/)
   end
 end
