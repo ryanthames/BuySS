@@ -26,6 +26,7 @@ defmodule BssWeb.ConnCase do
       import Ecto.Query
 
       import BssWeb.Router.Helpers
+      import BssWeb.TestHelpers
 
       # The default endpoint for testing
       @endpoint BssWeb.Endpoint
