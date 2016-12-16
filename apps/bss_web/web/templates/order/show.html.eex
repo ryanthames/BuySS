@@ -1,0 +1,53 @@
+<h2>Show order</h2>
+
+<ul>
+
+  <li>
+    <strong>First name:</strong>
+    <%= @order.first_name %>
+  </li>
+
+  <li>
+    <strong>Last name:</strong>
+    <%= @order.last_name %>
+  </li>
+
+  <li>
+    <strong>Address line 1:</strong>
+    <%= @order.address_line_1 %>
+  </li>
+
+  <li>
+    <strong>Address line 2:</strong>
+    <%= @order.address_line_2 %>
+  </li>
+
+  <li>
+    <strong>City:</strong>
+    <%= @order.city %>
+  </li>
+
+  <li>
+    <strong>State:</strong>
+    <%= @order.state %>
+  </li>
+
+  <li>
+    <strong>Zip:</strong>
+    <%= @order.zip %>
+  </li>
+
+  <li>
+    <strong>Email:</strong>
+    <%= @order.email %>
+  </li>
+
+  <li>
+    <strong>Status:</strong>
+    <%= @order.status %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: order_path(@conn, :edit, @order) %>
+<%= link "Back", to: order_path(@conn, :index) %>

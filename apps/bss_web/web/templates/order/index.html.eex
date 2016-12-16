@@ -1,0 +1,42 @@
+<h2>Listing orders</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Address line 1</th>
+      <th>Address line 2</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Zip</th>
+      <th>Email</th>
+      <th>Status</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for order <- @orders do %>
+    <tr>
+      <td><%= order.first_name %></td>
+      <td><%= order.last_name %></td>
+      <td><%= order.address_line_1 %></td>
+      <td><%= order.address_line_2 %></td>
+      <td><%= order.city %></td>
+      <td><%= order.state %></td>
+      <td><%= order.zip %></td>
+      <td><%= order.email %></td>
+      <td><%= order.status %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: order_path(@conn, :show, order), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: order_path(@conn, :edit, order), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: order_path(@conn, :delete, order), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New order", to: order_path(@conn, :new) %>
