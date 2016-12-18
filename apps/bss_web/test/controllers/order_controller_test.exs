@@ -1,6 +1,22 @@
 defmodule BssWeb.OrderControllerTest do
   use BssWeb.ConnCase
 
+  alias BssWeb.Order
+
+  @valid_attrs %{
+    first_name: "James",
+    last_name: "Kirk",
+    address_line_1: "123 Some St",
+    city: "San Francisco",
+    state: "CA",
+    zip: 12345,
+    email: "james.kirk@starfleet.gov"
+  }
+
+  @invalid_attrs %{
+    first_name: "Hodor"
+  }
+
   setup %{conn: conn} = config do
     if username = config[:login_as] do
       user = insert_user(username: username)
@@ -52,4 +68,11 @@ defmodule BssWeb.OrderControllerTest do
     assert String.contains?(conn.resp_body, some_order.address_line_1)
     assert String.contains?(conn.resp_body, another_order.address_line_1)
   end
+
+  # TODO test creating order
+  # TODO test creating order with errors
+
+  # TODO other CRUD actions
+
+  defp order_count(query), do: Repo.one(from o in query, select: count(o.id))
 end
