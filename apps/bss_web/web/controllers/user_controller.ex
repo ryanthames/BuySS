@@ -2,7 +2,7 @@ defmodule BssWeb.UserController do
   use BssWeb.Web, :controller
 
   plug :authenticate_user when action in [:index, :show, :create, :new]
-  plug :admin_only when action in [:create, :new]
+  plug :admin_only when action in [:index, :create, :new]
 
   alias BssWeb.User
 

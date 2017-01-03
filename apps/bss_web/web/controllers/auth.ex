@@ -12,8 +12,16 @@ defmodule BssWeb.Auth do
 
   def call(conn, repo) do
     user_id = get_session(conn, :user_id)
-    user = user_id && repo.get(BssWeb.User, user_id)
-    assign(conn, :current_user, user)
+
+    cond do
+      # if we have a current_user already, return the conn as is.
+      user = conn.assigns[:current_user] ->
+        conn
+      user = user_id && repo.get(BssWeb.User, user_id) ->
+        assign(conn, :current_user, user)
+      true ->
+        assign(conn, :current_user, nil)
+    end
   end
 
   def login(conn, user) do

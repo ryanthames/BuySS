@@ -21,6 +21,7 @@ defmodule BssWeb.ModelCase do
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
+      import BssWeb.TestHelpers
       import BssWeb.ModelCase
     end
   end
